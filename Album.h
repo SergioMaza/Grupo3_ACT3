@@ -7,6 +7,7 @@
 
 #include "enums/GeneroMusica.h"
 #include "Dynarray.h"
+#include "Cancion.h"
 #include <iomanip>
 
 using namespace std;
@@ -14,19 +15,21 @@ using namespace std;
 class Album{
 private:
     string tituloAlbum;
-    string grupo;
-    string album;
     GeneroMusica generoMusica;
-    string canciones[100];
+    Dynarray<Cancion>* canciones;
 
 public:
 
     // Constructor y metodos
-    Album() : tituloAlbum(""), grupo(""), generoMusica(), album(""){}
+    Album() : tituloAlbum(""), generoMusica(){}
 
-    Album(string tituloAlbum, string grupo, GeneroMusica generoMusica, string album): tituloAlbum(tituloAlbum), grupo(grupo), generoMusica(generoMusica), album(album){}
+    Album(string tituloAlbum, GeneroMusica generoMusica, Dynarray<Cancion>* cancion){
+        Album::tituloAlbum = tituloAlbum;
+        Album::generoMusica = generoMusica;
+        Album::canciones = cancion;
+    }
 
-    void buscarTitulo(string tituloAlbum, Dynarray<Album> &albumes) {
+    void buscarAlbum(string tituloAlbum, Dynarray<Album> &albumes) {
         bool found = false;
         for (int i = 0; i < albumes.capacity(); i++) {
             if (tituloAlbum == albumes.begin()[i].tituloAlbum) {
@@ -37,25 +40,28 @@ public:
         if (!found) {
             cout << "No se encontro ninguna cancion" << endl;
         }
-    }
-    void buscarAlbum(string album, Dynarray<Album> &albumes) {
+    }/*
+    void buscarCancion(string cancion, Dynarray<Album> &albumes) {
         bool found = false;
         for (int i = 0; i < albumes.capacity(); i++) {
-            if (album == albumes.begin()[i].album) {
-                found = true;
-                cout << albumes.begin()[i].toString() << endl;
+            for(int j = 0; j < 100; j++) {
+                if (cancion == albumes.begin()[i].canciones.begin()[j]) {
+                    found = true;
+                    cout << albumes.begin()[i].toString() << endl;
+                }
             }
         }
         if (!found) {
             cout << "No se encontro ningun album" << endl;
         }
-    }
+    }*/
     void buscarGrupo(string grupo, Dynarray<Album> &albumes) {
         bool found = false;
-        for (int i = 0; i < albumes.capacity(); i++) {
-            if (grupo == albumes.begin()[i].grupo) {
-                found = true;
-                cout << albumes.begin()[i].toString() << endl;
+        for (int i = 0; i < albumes.capacity(); ++i) {
+            for (int j = 0; j < Album::canciones->capacity(); ++j) {
+                if(grupo == canciones->begin()[j].getGrupo()){
+                    cout << canciones->begin()[j].To_String() << endl;
+                }
             }
         }
         if (!found) {
@@ -78,40 +84,23 @@ public:
         return tituloAlbum;
     }
 
-    const string &getGrupo() const {
-        return grupo;
-    }
-
     GeneroMusica getGeneroMusica() const {
         return generoMusica;
-    }
-
-    const string &getAlbum() const {
-        return album;
     }
 
     void setTituloAlbum(const string &tituloAlbum) {
         Album::tituloAlbum = tituloAlbum;
     }
 
-    void setGrupo(const string &grupo) {
-        Album::grupo = grupo;
-    }
-
     void setGeneroMusica(GeneroMusica generoMusica) {
         Album::generoMusica = generoMusica;
     }
 
-    void setAlbum(const string &album) {
-        Album::album = album;
-    }
     string toString(){
-
         return "Album: [Titulo: " + tituloAlbum +
-               ", Grupo: " + grupo +
-               ", Album: " + album +
                ", Genero: " + to_string(generoMusica);
     }
+
     void toStringformDynarray(Dynarray<Album> &albumes){
         for(int i = 0; i < albumes.capacity(); i++){
             cout << albumes.begin()[i].toString() << endl;
