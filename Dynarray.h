@@ -47,7 +47,7 @@ public:
     auto size() { return max_count; }
 
     // Devuelve el espacio ocupado por el dynarray
-    auto capacity(){ return count; }
+    auto capacity() { return count; }
 
     // Devuelve el puntero first
     // Especificando un indice [i] puedes conseguir el objeto guardado en ese indice
@@ -80,6 +80,33 @@ public:
         first = aux; // Que first apunte a la primera direccion de memoria del nuevo array
         max_count = max_count * 2; // Para actualizar la variable
         delete[] aux2; // No borra el puntero, borra el antiguo array
+    }
+
+    /**
+     * Metodo para eliminar un elemento basado en su posicion
+     * @param posicion Posicion del elemento a eliminar
+     */
+    void eliminar(size_t posicion) {
+        if (posicion >= count) { // La posicion supera el numero de elementos que hay
+            cout << "La posicion no es valida" << endl;
+        } else {
+            for (size_t i = posicion; i < count - 1; i++) {
+                first[i] = first[i + 1];
+            }
+            count--;
+        }
+    }
+
+    /**
+     * Metodo para busacar un elemento
+     * @param elemento Elemento a buscar
+     * @return True-> Encontrado / False-> No encontrado
+     */
+    bool search(T elemento) {
+        for (size_t i = 0; i < count; i++) {
+            if (elemento == first[i]) { return true; }
+        }
+        return false;
     }
 
     /**

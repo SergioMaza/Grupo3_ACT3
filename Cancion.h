@@ -24,7 +24,7 @@ public:
     Cancion(string tituloCancion, string grupo): tituloCancion(tituloCancion), grupo(grupo){}
 
     /**
-     * Metodo para conseguir el grupo
+     * Método para conseguir el grupo
      * @return Regresa el grupo del album
      */
     string getGrupo(){
