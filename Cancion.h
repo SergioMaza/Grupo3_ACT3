@@ -25,7 +25,7 @@ public:
 
     /**
      * Método para conseguir el grupo
-     * @return Regresa el grupo del album
+     * @return Regresa el grupo del álbum
      */
     string getGrupo(){
         return grupo;

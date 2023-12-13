@@ -9,6 +9,7 @@
 
 
 int main() {
+    cout << "hola lu" << endl;
     return 0;
 }
 

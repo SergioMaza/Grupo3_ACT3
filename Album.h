@@ -127,7 +127,7 @@ void buscarCancion(string cancion, Dynarray<Album> &albumes) {
  * Función que busca el album recorriendo toda la lista
  * a partir del grupo
 * @param grupo Grupo a buscar
-* @param albumes la lista en la cual se busca
+* @param albumes La lista en la cual se busca
 */
 void buscarGrupo(string grupo, Dynarray<Album> &albumes) {
     bool found = false;

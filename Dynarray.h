@@ -110,7 +110,7 @@ public:
     }
 
     /**
-     * Metodo toString
+     * Metodo toString para mostrar por pantalla el array
      */
     void toString() {
         for (int i = 0; i < count; i++) {
