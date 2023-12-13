@@ -22,7 +22,7 @@ public:
 
     // Constructor y metodos
     /**
-     * Constructor a vacio de Album
+     * Constructor a vacío de Album
      */
     Album() : tituloAlbum(""), generoMusica(){}
     /**

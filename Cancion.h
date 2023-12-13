@@ -18,7 +18,7 @@ public:
     Cancion() {}
     /**
      * Constuctor que inicializa el album
-     * @param tituloCancion El titulo de la cancion del album
+     * @param tituloCancion El título de la cancion del album
      * @param grupo El grupo del album
      */
     Cancion(string tituloCancion, string grupo): tituloCancion(tituloCancion), grupo(grupo){}

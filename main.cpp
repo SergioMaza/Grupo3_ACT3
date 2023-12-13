@@ -7,58 +7,6 @@
 #include "Dinarray.h"
 #include "Cancion.h"
 
-void buscarAlbum(string tituloAlbum, Dynarray<Album> &albumes) {
-    bool found = false;
-    for (int i = 0; i < albumes.capacity(); i++) {
-        if (tituloAlbum == albumes.begin()[i].getTituloAlbum()) {
-            found = true;
-            cout << albumes.begin()[i].toString() << endl;
-        }
-    }
-    if (!found) {
-        cout << "No se encontro ninguna cancion" << endl;
-    }
-}
-void buscarCancion(string cancion, Dynarray<Album> &albumes) {
-    bool found = false;
-    for (int i = 0; i < albumes.capacity(); i++) {
-        for(int j = 0; j < albumes.begin()[i].getCanciones()->capacity(); j++) {
-            if (cancion == albumes.begin()[i].getCanciones()->begin()[j].getTituloCancion()) {
-                found = true;
-                cout << albumes.begin()[i].toString() << endl;
-            }
-        }
-    }
-    if (!found) {
-        cout << "No se encontro ningun album" << endl;
-    }
-}
-void buscarGrupo(string grupo, Dynarray<Album> &albumes) {
-    bool found = false;
-    for (int i = 0; i < albumes.capacity(); ++i) {
-        for (int j = 0; j < albumes.begin()[i].getCanciones()->capacity(); ++j) {
-            if(grupo == albumes.begin()[i].getCanciones()->begin()[j].getGrupo()){
-                cout << albumes.begin()[i].getCanciones()->begin()[j].To_String() << endl;
-                found = true;
-            }
-        }
-    }
-    if (!found) {
-        cout << "No se encontro ningun grupo" << endl;
-    }
-}
-void buscarGenero(GeneroMusica generoMusica, Dynarray<Album> &albumes) {
-    bool found = false;
-    for (int i = 0; i < albumes.capacity(); i++) {
-        if (generoMusica == albumes.begin()[i].getGeneroMusica()) {
-            found = true;
-            cout << albumes.begin()[i].toString() << endl;
-        }
-    }
-    if (!found) {
-        cout << "No se encontro ningun genero" << endl;
-    }
-}
 
 int main() {
 
@@ -79,10 +27,7 @@ int main() {
 
        albumes->insert(*album1);
        albumes->insert(*album2);
-       album1->buscarGrupo("Feid", *albumes);
-       album1->buscarAlbum("Estrella", *albumes);
-       album1->buscarGenero(Reggae,*albumes);
-       album1->buscarCancion("Reina", *albumes);
+
     return 0;
 }
 
