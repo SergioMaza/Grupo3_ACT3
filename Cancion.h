@@ -12,26 +12,35 @@ private:
     string grupo;
     string tituloCancion;
 public:
+    /**
+     * Constructor a vacio de Cancion
+     */
     Cancion() {}
-
+    /**
+     * Constuctor que inicializa el album
+     * @param tituloCancion El titulo de la cancion del album
+     * @param grupo El grupo del album
+     */
     Cancion(string tituloCancion, string grupo): tituloCancion(tituloCancion), grupo(grupo){}
 
+    /**
+     * Metodo para conseguir el grupo
+     * @return Regresa el grupo del album
+     */
     string getGrupo(){
         return grupo;
     }
-
-    void setGrupo(const string &grupo) {
-        Cancion::grupo = grupo;
-    }
-
+    /**
+     * Metodo para connseguir el titulo de la cancion
+     * @return Regresa el titulo de la cancion
+     */
     const string &getTituloCancion() const {
         return tituloCancion;
     }
-
-    void setTituloCancion(const string &tituloCancion) {
-        Cancion::tituloCancion = tituloCancion;
-    }
-
+    /**
+     * Metodo to_string que muestra por pantalla los parametros
+     * @return Regresa la cancion y el grupo
+     */
     string To_String(){
         return "Cancion: " + tituloCancion + " , Grupo: " + grupo ;
     }
