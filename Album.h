@@ -29,10 +29,11 @@ public:
         Album::canciones = cancion;
     }
 
+
     void buscarAlbum(string tituloAlbum, Dynarray<Album> &albumes) {
         bool found = false;
         for (int i = 0; i < albumes.capacity(); i++) {
-            if (tituloAlbum == albumes.begin()[i].tituloAlbum) {
+            if (tituloAlbum == albumes.begin()[i].getTituloAlbum()) {
                 found = true;
                 cout << albumes.begin()[i].toString() << endl;
             }
@@ -40,12 +41,12 @@ public:
         if (!found) {
             cout << "No se encontro ninguna cancion" << endl;
         }
-    }/*
+    }
     void buscarCancion(string cancion, Dynarray<Album> &albumes) {
         bool found = false;
         for (int i = 0; i < albumes.capacity(); i++) {
-            for(int j = 0; j < 100; j++) {
-                if (cancion == albumes.begin()[i].canciones.begin()[j]) {
+            for(int j = 0; j < albumes.begin()[i].getCanciones()->capacity(); j++) {
+                if (cancion == albumes.begin()[i].getCanciones()->begin()[j].getTituloCancion()) {
                     found = true;
                     cout << albumes.begin()[i].toString() << endl;
                 }
@@ -54,13 +55,14 @@ public:
         if (!found) {
             cout << "No se encontro ningun album" << endl;
         }
-    }*/
+    }
     void buscarGrupo(string grupo, Dynarray<Album> &albumes) {
         bool found = false;
         for (int i = 0; i < albumes.capacity(); ++i) {
-            for (int j = 0; j < Album::canciones->capacity(); ++j) {
-                if(grupo == canciones->begin()[j].getGrupo()){
-                    cout << canciones->begin()[j].To_String() << endl;
+            for (int j = 0; j < albumes.begin()[i].getCanciones()->capacity(); ++j) {
+                if(grupo == albumes.begin()[i].getCanciones()->begin()[j].getGrupo()){
+                    cout << albumes.begin()[i].getCanciones()->begin()[j].To_String() << endl;
+                    found = true;
                 }
             }
         }
@@ -71,7 +73,7 @@ public:
     void buscarGenero(GeneroMusica generoMusica, Dynarray<Album> &albumes) {
         bool found = false;
         for (int i = 0; i < albumes.capacity(); i++) {
-            if (generoMusica == albumes.begin()[i].generoMusica) {
+            if (generoMusica == albumes.begin()[i].getGeneroMusica()) {
                 found = true;
                 cout << albumes.begin()[i].toString() << endl;
             }
@@ -80,6 +82,7 @@ public:
             cout << "No se encontro ningun genero" << endl;
         }
     }
+
     const string &getTituloAlbum() const {
         return tituloAlbum;
     }
@@ -105,6 +108,10 @@ public:
         for(int i = 0; i < albumes.capacity(); i++){
             cout << albumes.begin()[i].toString() << endl;
         }
+    }
+
+    Dynarray<Cancion> *getCanciones() const {
+        return canciones;
     }
 
 };
