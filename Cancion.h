@@ -13,7 +13,7 @@ private:
     string tituloCancion;
 public:
     /**
-     * Constructor a vacio de Cancion
+     * Constructor a vacío de Cancion
      */
     Cancion() {}
     /**

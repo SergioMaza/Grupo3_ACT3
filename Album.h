@@ -136,7 +136,7 @@ void buscarGrupo(string grupo, Dynarray<Album> &albumes) {
 }
 /**
  * Función que busca el album recorriendo toda la lista
- * a partir del genero de musica
+ * a partir del género de musica
  * @param generoMusica El genero a buscar en tu lista
  * @param albumes La lista que tiene que recorrer
  */
