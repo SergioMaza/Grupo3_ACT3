@@ -58,61 +58,7 @@ public:
         included = false;
     }
 
-    Multimedia(){};
-
-    /**
-     * Metodo para buscar una multimedia a partir del titulo
-     * @param titulo Titlo de la multimedia a buscar
-     * @param mult Dynarray de las multimedias
-     */
-    void buscarTitulo(string titulo, Dynarray<Multimedia> &mult){
-        bool encontrado;
-        for(int i = 0; i < mult.capacity(); i++){
-            if(titulo == mult.begin()[i].titulo){
-                cout <<  mult.begin()[i].toString() << endl;
-                encontrado = true;
-            }
-        }
-        if(!encontrado){
-            cout << "No se ha encontrado ninguna multimedia con el titulo especificado" << endl;
-        }
-    }
-
-    /**
-     * Metodo para buscar una multimedia a partir del genero
-     * @param genero Genero de la multimedia a buscar
-     * @param mult Dynarray de las multimedias
-     */
-    void buscarGenero(GeneroMultimedia genero, Dynarray<Multimedia> &mult){
-        bool encontrado;
-        for(int i = 0; i < mult.capacity(); i++){
-            if(genero == mult.begin()[i].generoMultimedia){
-                cout <<  mult.begin()[i].toString() << endl;
-                encontrado = true;
-            }
-        }
-        if(!encontrado){
-            cout << "No se ha encontrado ninguna multimedia con el genero especificado" << endl;
-        }
-    }
-
-    /**
-     * Metodo para buscar una multimedia a partir de la calidad
-     * @param calidad Calidad de la multimedia a buscar
-     * @param mult Dynarray de las multimedias
-     */
-    void buscarCalidad(Calidad calidad, Dynarray<Multimedia> &mult){
-        bool encontrado;
-        for(int i = 0; i < mult.capacity(); i++){
-            if(calidad == mult.begin()[i].getCalidad()){
-                cout <<  mult.begin()[i].toString() << endl;
-                encontrado = true;
-            }
-        }
-        if(!encontrado){
-            cout << "No se ha encontrado ninguna multimedia con la calidad especificada" << endl;
-        }
-    }
+    Multimedia() {};
 
     /**
      * Metodo para conseguir el titulo
@@ -190,27 +136,83 @@ public:
      * Metodo toString de Multimedia
      * @return toString de Multimedia
      */
-    string toString(){
+    string toString() {
         string dispoToString = (dispo) ? "Disponible" : "No disponible";
         string includedToString = (included) ? "Si" : "No";
 
         return "Multimedia: [Titulo: " + titulo +
-        ", Genero: " + to_string(generoMultimedia) +
-        ", Calidad: " + to_string(calidad) +
-        ", " + dispoToString +
-        ", Incluido con su tarifa: " + includedToString +
-        ", Precio extra = " + to_string(precioExtra);
+               ", Genero: " + to_string(generoMultimedia) +
+               ", Calidad: " + to_string(calidad) +
+               ", " + dispoToString +
+               ", Incluido con su tarifa: " + includedToString +
+               ", Precio extra = " + to_string(precioExtra);
     }
 
-    /**
-     * Metodo para imprimir la multimedia en un Dynarray
-     * @param mult Array de multimedias
-     */
-    void toStringformDynarray(Dynarray<Multimedia> &mult){
-        for(int i = 0; i < mult.capacity(); i++){
+
+};
+
+/**
+ * Metodo para buscar una multimedia a partir del titulo
+ * @param titulo Titlo de la multimedia a buscar
+ * @param mult Dynarray de las multimedias
+ */
+void buscarTitulo(string titulo, Dynarray<Multimedia> &mult) {
+    bool encontrado;
+    for (int i = 0; i < mult.capacity(); i++) {
+        if (titulo == mult.begin()[i].getTitulo()) {
             cout << mult.begin()[i].toString() << endl;
+            encontrado = true;
         }
     }
-};
+    if (!encontrado) {
+        cout << "No se ha encontrado ninguna multimedia con el titulo especificado" << endl;
+    }
+}
+
+/**
+ * Metodo para buscar una multimedia a partir del genero
+ * @param genero Genero de la multimedia a buscar
+ * @param mult Dynarray de las multimedias
+ */
+void buscarGenero(GeneroMultimedia genero, Dynarray<Multimedia> &mult) {
+    bool encontrado;
+    for (int i = 0; i < mult.capacity(); i++) {
+        if (genero == mult.begin()[i].getGeneroMultimedia()) {
+            cout << mult.begin()[i].toString() << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << "No se ha encontrado ninguna multimedia con el genero especificado" << endl;
+    }
+}
+
+/**
+ * Metodo para buscar una multimedia a partir de la calidad
+ * @param calidad Calidad de la multimedia a buscar
+ * @param mult Dynarray de las multimedias
+ */
+void buscarCalidad(Calidad calidad, Dynarray<Multimedia> &mult) {
+    bool encontrado;
+    for (int i = 0; i < mult.capacity(); i++) {
+        if (calidad == mult.begin()[i].getCalidad()) {
+            cout << mult.begin()[i].toString() << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << "No se ha encontrado ninguna multimedia con la calidad especificada" << endl;
+    }
+}
+
+/**
+ * Metodo para imprimir la multimedia en un Dynarray
+ * @param mult Array de multimedias
+ */
+void toStringformDynarray(Dynarray<Multimedia> &mult) {
+    for (int i = 0; i < mult.capacity(); i++) {
+        cout << mult.begin()[i].toString() << endl;
+    }
+}
 
 #endif //GRUPO3_ACT3_MULTIMEDIA_H
