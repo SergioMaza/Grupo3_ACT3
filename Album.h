@@ -54,24 +54,6 @@ public:
         return generoMusica;
     }
 
-    /**
-     * Te genera un string que te devuelve el album y el genero
-     * @return el titulo del album y el genero
-     */
-    string toString() {
-        return "Album: [Titulo: " + tituloAlbum +
-               ", Genero: " + to_string(generoMusica);
-    }
-
-    /**
-     * Te muestra los albumes por pantalla
-     * @param albumes
-     */
-    void toStringformDynarray(Dynarray<Album> &albumes) {
-        for (int i = 0; i < albumes.capacity(); i++) {
-            cout << albumes.begin()[i].toString() << endl;
-        }
-    }
 
     /**
      * getter de canciones
@@ -80,6 +62,83 @@ public:
     Dynarray<Cancion> *getCanciones() const {
         return canciones;
     }
+
+    string cancionesToString () const{
+        return canciones->to_String();
+    }
+
+    /**
+     * Te genera un string que te devuelve el album y el genero
+     * @return el titulo del album y el genero
+     */
+    string toString() {
+        string genero = "No especificado";
+
+        switch (generoMusica){
+            case 0:
+                genero = "Pop";
+                break;
+            case 1:
+                genero = "Rock";
+                break;
+            case 2:
+                genero = "HipHop";
+                break;
+            case 3:
+                genero = "Rap";
+                break;
+            case 4:
+                genero = "Reggae";
+                break;
+            case 5:
+                genero = "Indie";
+                break;
+            case 6:
+                genero = "Clasica";
+                break;
+            case 7:
+                genero = "Punk";
+                break;
+        }
+        return "Album: [Titulo: " + tituloAlbum +
+               ", Genero: " + genero;
+    }
+
+    friend std::ostream& operator<<(std::ostream&os, const Album& al) {
+        string genero = "No especificado";
+
+        switch (al.getGeneroMusica()){
+            case 0:
+                genero = "Pop";
+                break;
+            case 1:
+                genero = "Rock";
+                break;
+            case 2:
+                genero = "HipHop";
+                break;
+            case 3:
+                genero = "Rap";
+                break;
+            case 4:
+                genero = "Reggae";
+                break;
+            case 5:
+                genero = "Indie";
+                break;
+            case 6:
+                genero = "Clasica";
+                break;
+            case 7:
+                genero = "Punk";
+                break;
+        }
+        string c = al.cancionesToString();
+        os << (al.getTituloAlbum() +
+               ", Genero: " + genero + "\nCanciones:\n" + c);
+        return os;
+    }
+
 
 };
 
@@ -94,7 +153,7 @@ void buscarAlbum(string tituloAlbum, Dynarray<Album> &albumes) {
     for (int i = 0; i < albumes.capacity(); i++) {
         if (tituloAlbum == albumes.begin()[i].getTituloAlbum()) {
             found = true;
-            cout << albumes.begin()[i].toString() << endl;
+            cout << albumes.begin()[i] << endl;
         }
     }
     if (!found) {
@@ -114,7 +173,7 @@ void buscarCancion(string cancion, Dynarray<Album> &albumes) {
         for (int j = 0; j < albumes.begin()[i].getCanciones()->capacity(); j++) {
             if (cancion == albumes.begin()[i].getCanciones()->begin()[j].getTituloCancion()) {
                 found = true;
-                cout << albumes.begin()[i].toString() << endl;
+                cout << albumes.begin()[i].toString() + ", "+ albumes.begin()[i].getCanciones()->begin()[j].to_String() +"]" << endl;
             }
         }
     }
@@ -134,7 +193,7 @@ void buscarGrupo(string grupo, Dynarray<Album> &albumes) {
     for (int i = 0; i < albumes.capacity(); ++i) {
         for (int j = 0; j < albumes.begin()[i].getCanciones()->capacity(); ++j) {
             if (grupo == albumes.begin()[i].getCanciones()->begin()[j].getGrupo()) {
-                cout << albumes.begin()[i].getCanciones()->begin()[j].To_String() << endl;
+                cout << albumes.begin()[i].toString() + ", "+ albumes.begin()[i].getCanciones()->begin()[j].to_String() +"]" << endl;
                 found = true;
             }
         }
@@ -155,7 +214,7 @@ void buscarGenero(GeneroMusica generoMusica, Dynarray<Album> &albumes) {
     for (int i = 0; i < albumes.capacity(); i++) {
         if (generoMusica == albumes.begin()[i].getGeneroMusica()) {
             found = true;
-            cout << albumes.begin()[i].toString() << endl;
+            cout << albumes.begin()[i] << endl;
         }
     }
     if (!found) {

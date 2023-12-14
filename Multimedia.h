@@ -115,22 +115,6 @@ public:
         Multimedia::dispo = dispo;
     }
 
-    /**
-     * Metodo para establecer si esta o no incluido
-     * @param included Si esta o no incluido en la tarifa basica
-     */
-    void setIncluded(bool included) {
-        Multimedia::included = included;
-    }
-
-    /**
-     * Metodo para establecer el precio extra
-     * @param precioExtra Precio Extra
-     */
-    void setPrecioExtra(double precioExtra) {
-        Multimedia::precioExtra = precioExtra;
-    }
-
     friend std::ostream& operator<<(std::ostream&os, const Multimedia& mul) {
         string dispoToString = (mul.dispo) ? "Disponible" : "No disponible";
         string includedToString = (mul.included) ? "Si" : "No";
@@ -172,7 +156,7 @@ public:
 
         string precioExtraToString = (mul.getPrecioExtra()) == 0 ? "No" : to_string(mul.getPrecioExtra()) ;
 
-        string calidadToString = (mul.calidad) ? "FHD" : "UHD";
+        string calidadToString = (mul.calidad) ? "UHD" : "FHD";
         os << (mul.getTitulo() +
                ", Genero: " + generoToString +
                ", Calidad: " + calidadToString +

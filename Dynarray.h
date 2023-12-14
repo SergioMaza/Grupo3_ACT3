@@ -83,40 +83,27 @@ public:
     }
 
     /**
-     * Metodo para eliminar un elemento basado en su posicion
-     * @param posicion Posicion del elemento a eliminar
-     */
-    void eliminar(size_t posicion) {
-        if (posicion >= count) { // La posicion supera el numero de elementos que hay
-            cout << "La posicion no es valida" << endl;
-        } else {
-            for (size_t i = posicion; i < count - 1; i++) {
-                first[i] = first[i + 1];
-            }
-            count--;
-        }
-    }
-
-    /**
-     * Metodo para busacar un elemento
-     * @param elemento Elemento a buscar
-     * @return True-> Encontrado / False-> No encontrado
-     */
-    bool search(T elemento) {
-        for (size_t i = 0; i < count; i++) {
-            if (elemento == first[i]) { return true; }
-        }
-        return false;
-    }
-
-    /**
      * Metodo toString para mostrar por pantalla el array
      */
     void toString() {
+        string toString;
         for (int i = 0; i < count; i++) {
             cout << "- " << first[i] << endl;
             cout << endl;
         }
+    }
+
+    /**
+     * Metodo to String que mete los elementos del Dynarray en un string
+     */
+
+    string to_String (){
+        string toString;
+        for (int i = 0; i < count; i++) {
+            toString += first[i].to_String();
+            toString += "\n";
+        }
+        return toString;
     }
 
 };
