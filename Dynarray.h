@@ -114,7 +114,8 @@ public:
      */
     void toString() {
         for (int i = 0; i < count; i++) {
-            cout << first[i] << endl;
+            cout << "- " << first[i] << endl;
+            cout << endl;
         }
     }
 

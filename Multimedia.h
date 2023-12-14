@@ -53,7 +53,6 @@ public:
             generoMultimedia(generoMultimedia),
             calidad(calidad),
             dispo(dispo),
-            included(included),
             precioExtra(precioExtra) {
         included = false;
     }
@@ -132,22 +131,56 @@ public:
         Multimedia::precioExtra = precioExtra;
     }
 
-    /**
-     * Metodo toString de Multimedia
-     * @return toString de Multimedia
-     */
-    string toString() {
-        string dispoToString = (dispo) ? "Disponible" : "No disponible";
-        string includedToString = (included) ? "Si" : "No";
+    friend std::ostream& operator<<(std::ostream&os, const Multimedia& mul) {
+        string dispoToString = (mul.dispo) ? "Disponible" : "No disponible";
+        string includedToString = (mul.included) ? "Si" : "No";
 
-        return "Multimedia: [Titulo: " + titulo +
-               ", Genero: " + to_string(generoMultimedia) +
-               ", Calidad: " + to_string(calidad) +
+        string generoToString = "Sin clasificar";
+        switch (mul.generoMultimedia) {
+            case 0:
+                generoToString = "Accion";
+                break;
+            case 1:
+                generoToString = "Comedia";
+                break;
+            case 2:
+                generoToString = "Drama";
+                break;
+            case 3:
+                generoToString = "CienciaFiccion";
+                break;
+            case 4:
+                generoToString = "Terror";
+                break;
+            case 5:
+                generoToString = "Aventura";
+                break;
+            case 6:
+                generoToString = "Suspense";
+                break;
+            case 7:
+                generoToString = "Romance";
+                break;
+            case 8:
+                generoToString = "Musical";
+                break;
+            case 9:
+                generoToString = "Fantasia";
+                break;
+
+        }
+
+        string precioExtraToString = (mul.getPrecioExtra()) == 0 ? "No" : to_string(mul.getPrecioExtra()) ;
+
+        string calidadToString = (mul.calidad) ? "FHD" : "UHD";
+        os << (mul.getTitulo() +
+               ", Genero: " + generoToString +
+               ", Calidad: " + calidadToString +
                ", " + dispoToString +
                ", Incluido con su tarifa: " + includedToString +
-               ", Precio extra = " + to_string(precioExtra);
+               "\n Precio extra = " + precioExtraToString);
+        return os;
     }
-
 
 };
 
@@ -160,7 +193,7 @@ void buscarTitulo(string titulo, Dynarray<Multimedia> &mult) {
     bool encontrado;
     for (int i = 0; i < mult.capacity(); i++) {
         if (titulo == mult.begin()[i].getTitulo()) {
-            cout << mult.begin()[i].toString() << endl;
+            cout << mult.begin()[i] << endl;
             encontrado = true;
         }
     }
@@ -178,7 +211,7 @@ void buscarGenero(GeneroMultimedia genero, Dynarray<Multimedia> &mult) {
     bool encontrado;
     for (int i = 0; i < mult.capacity(); i++) {
         if (genero == mult.begin()[i].getGeneroMultimedia()) {
-            cout << mult.begin()[i].toString() << endl;
+            cout << mult.begin()[i] << endl;
             encontrado = true;
         }
     }
@@ -196,22 +229,12 @@ void buscarCalidad(Calidad calidad, Dynarray<Multimedia> &mult) {
     bool encontrado;
     for (int i = 0; i < mult.capacity(); i++) {
         if (calidad == mult.begin()[i].getCalidad()) {
-            cout << mult.begin()[i].toString() << endl;
+            cout << mult.begin()[i] << endl;
             encontrado = true;
         }
     }
     if (!encontrado) {
         cout << "No se ha encontrado ninguna multimedia con la calidad especificada" << endl;
-    }
-}
-
-/**
- * Metodo para imprimir la multimedia en un Dynarray
- * @param mult Array de multimedias
- */
-void toStringformDynarray(Dynarray<Multimedia> &mult) {
-    for (int i = 0; i < mult.capacity(); i++) {
-        cout << mult.begin()[i].toString() << endl;
     }
 }
 
