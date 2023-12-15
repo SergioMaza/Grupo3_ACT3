@@ -12,10 +12,10 @@ enum GeneroMultimedia {
     CienciaFiccion,
     Terror,
     Aventura,
-    Documental,
     Suspense,
     Romance,
-    Musical
+    Musical,
+    Fantasia
 };
 
 #endif //GRUPO3_ACT3_GENEROMULTIMEDIA_H

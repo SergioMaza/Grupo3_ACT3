@@ -27,9 +27,10 @@ public:
      * Método para conseguir el grupo
      * @return Regresa el grupo del álbum
      */
-    string getGrupo(){
+    const string &getGrupo() const {
         return grupo;
     }
+
     /**
      * Metodo para connseguir el titulo de la cancion
      * @return Regresa el titulo de la cancion
@@ -41,9 +42,10 @@ public:
      * Metodo to_string que muestra por pantalla los parametros
      * @return Regresa la cancion y el grupo
      */
-    string To_String(){
+    string to_String(){
         return "Cancion: " + tituloCancion + " , Grupo: " + grupo ;
     }
+
 };
 
 #endif //GRUPO3_ACT3_CANCION_H

@@ -9,12 +9,10 @@ enum GeneroMusica {
     Pop,
     Rock,
     HipHop,
-    Jazz,
+    Rap,
     Reggae,
-    Country,
-    Electronica,
+    Indie,
     Clasica,
-    Metal,
     Punk,
 };
 
